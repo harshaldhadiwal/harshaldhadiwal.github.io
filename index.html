@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harshal Dhadiwal - Network Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #0099cc;
+            --accent: #00ffaa;
+            --bg-dark: #0a0e27;
+            --bg-card: #151932;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8cc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 212, 255, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f3a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 255, 170, 0.08) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .badge {
+            background: var(--bg-card);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-content {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.5s;
+        }
+
+        .skill-card:hover::before {
+            transform: scale(1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .skill-card li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .skill-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .project-status {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.3rem 1rem;
+            background: rgba(0, 255, 170, 0.1);
+            color: var(--accent);
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent);
+        }
+
+        /* Certifications */
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cert-item {
+            background: var(--bg-card);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .cert-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+        }
+
+        .cert-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .cert-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            border-color: var(--primary);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>👋 Hi, I'm Harshal Dhadiwal</h1>
+            <p class="subtitle">Network Engineer | CCNA Certified | Building Enterprise Networks</p>
+            <div class="badges">
+                <span class="badge">CCNA Certified</span>
+                <span class="badge">CCNP In Progress</span>
+                <span class="badge">CCIE Track</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>🌐 About Me</h2>
+        <div class="about-content">
+            <p>I'm a dedicated <strong>Network Engineer</strong> passionate about enterprise-level routing, switching, and network design. I enjoy creating complex topologies, optimizing routing protocols, and ensuring network reliability.</p>
+            <p>I believe in continuous learning — I've completed my <strong>CCNA</strong>, I'm pursuing <strong>CCNP Switching & Routing</strong>, and I plan to advance toward <strong>CCIE Enterprise Infrastructure</strong> certification.</p>
+            <p>My expertise lies in designing scalable networks, implementing redundancy protocols, and troubleshooting complex network issues using industry-standard tools and best practices.</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>🧠 Networking Knowledge</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>🛰️ Switching & Layer 2</h3>
+                <ul>
+                    <li>VLANs, Trunking, Inter-VLAN Routing</li>
+                    <li>STP, RSTP, MSTP for loop prevention</li>
+                    <li>EtherChannel (PAgP, LACP)</li>
+                    <li>VTP, DTP, Native VLAN Concepts</li>
+                    <li>Port Security and Switch Hardening</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>📡 Routing & Layer 3</h3>
+                <ul>
+                    <li>Static & Default Routing</li>
+                    <li>Dynamic Routing: EIGRP, OSPF</li>
+                    <li>Route Redistribution & Summarization</li>
+                    <li>Passive Interfaces, Loopbacks</li>
+                    <li>Redundancy: HSRP, VRRP, GLBP</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>🧱 Network Services</h3>
+                <ul>
+                    <li>DHCP, DNS, NAT Configuration</li>
+                    <li>SNMP, Syslog, NTP</li>
+                    <li>Access Control Lists (ACLs)</li>
+                    <li>Network Monitoring & Management</li>
+                    <li>QoS and Traffic Management</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>🧩 Troubleshooting Tools</h3>
+                <ul>
+                    <li>Cisco Packet Tracer</li>
+                    <li>GNS3 Network Simulation</li>
+                    <li>Wireshark (Packet Analysis)</li>
+                    <li>Protocol Analyzers</li>
+                    <li>Network Diagnostic Commands</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>🧪 Practical Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">🧩</div>
+                <h3>VLAN & Trunking Lab</h3>
+                <p>Segregating traffic using VLANs and 802.1Q trunks for secure and efficient network segmentation across multiple switches.</p>
+                <span class="project-status">Ongoing</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🔁</div>
+                <h3>HSRP Redundancy Lab</h3>
+                <p>Gateway failover between dual routers ensuring high availability and seamless network connectivity during failures.</p>
+                <span class="project-status">Ongoing</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🔄</div>
+                <h3>OSPF Multi-Area Topology</h3>
+                <p>Dynamic routing between subnets using OSPF multi-area design with proper area configuration and route summarization.</p>
+                <span class="project-status">Ongoing</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">⚙️</div>
+                <h3>EtherChannel Setup</h3>
+                <p>Load balancing between switches using LACP and PAgP protocols for increased bandwidth and redundancy.</p>
+                <span class="project-status">Ongoing</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🧱</div>
+                <h3>Spanning Tree Scenarios</h3>
+                <p>Testing root bridge elections and topology changes with STP, RSTP, and MSTP implementations for loop prevention.</p>
+                <span class="project-status">Ongoing</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🎯</div>
+                <h3>CCIE Enterprise Infrastructure</h3>
+                <p>Advanced enterprise simulations covering complex routing, switching, and troubleshooting scenarios at expert level.</p>
+                <span class="project-status">Upcoming</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <h2>📚 Certifications</h2>
+        <div class="cert-list">
+            <div class="cert-item">
+                <div class="cert-icon">✅</div>
+                <div class="cert-content">
+                    <h3>Cisco Certified Network Associate (CCNA)</h3>
+                    <p>Completed - Cisco</p>
+                </div>
+            </div>
+
+            <div class="cert-item">
+                <div class="cert-icon">🔄</div>
+                <div class="cert-content">
+                    <h3>Cisco Certified Network Professional (CCNP)</h3>
+                    <p>In Progress - Switching & Routing</p>
+                </div>
+            </div>
+
+            <div class="cert-item">
+                <div class="cert-icon">🎯</div>
+                <div class="cert-content">
+                    <h3>Cisco Certified Internetwork Expert (CCIE)</h3>
+                    <p>Next Goal - Enterprise Infrastructure Track</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>💬 Connect with Me</h2>
+        <div class="contact-grid">
+            <a href="https://linkedin.com/in/YOUR-LINKEDIN" target="_blank" class="contact-card">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <p>Connect with me professionally</p>
+            </a>
+
+            <a href="mailto:youremail@example.com" class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h3>Email</h3>
+                <p>youremail@example.com</p>
+            </a>
+
+            <a href="https://yourusername.github.io" target="_blank" class="contact-card">
+                <div class="contact-icon">🌐</div>
+                <h3>Portfolio</h3>
+                <p>View my work online</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="quote">⭐ "Networks may be invisible, but their reliability speaks volumes."</p>
+        <p style="color: var(--text-secondary);">© 2025 Harshal Dhadiwal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.skill-card, .project-card, .cert-item, .contact-card, .about-content').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Active navigation highlight
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.color = 'var(--primary)';
+                } else {
+                    link.style.color = 'var(--text-secondary)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
